@@ -1,4 +1,4 @@
-import os, sys
+import os, sys, timeit
 
 # файли є текстові і двійкові
 # імя файла є відносне (до директоріЇ) і абсолютне (повне)
@@ -40,4 +40,5 @@ with open('test.txt', 'w', encoding='utf-8') as f:
 # f = open('temp.txt', 'w')
 # sys.stdout = f
 # print('Hello')
+
 
