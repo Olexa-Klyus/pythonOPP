@@ -33,8 +33,9 @@ class Student1:
     def __init__(self, surname, name):
         self.surname = surname
         self.name = name
-        print(self)
+
         print(id(self))
+        print(self)
 
 
 stud_3 = Student1('Ivanov', 'Ivan')
