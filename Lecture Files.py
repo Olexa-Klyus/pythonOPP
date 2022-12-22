@@ -1,4 +1,5 @@
-import os, sys, timeit
+import os
+# import sys, timeit
 
 # файли є текстові і двійкові
 # імя файла є відносне (до директоріЇ) і абсолютне (повне)
@@ -34,11 +35,8 @@ with open('test.txt', 'w', encoding='utf-8') as f:
     for item in x:
         f.write(f'{item}\n')
 
-
 # можна переправити потік виведення у файл
 # і вивести прінтом у файл
 # f = open('temp.txt', 'w')
 # sys.stdout = f
 # print('Hello')
-
-
