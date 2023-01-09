@@ -26,10 +26,10 @@ print(math.__dict__)
 # додається ключ в словнику sys.modules, створюється змінна, яка посилається на цей модуль
 # щоб його перезантажити (наприклад зі змінами), є спец функція reload
 
-# процес імпортінгу можна записати під капотом - наприклад спробуємо імпортнути Lecture 2 HW.py
+# процес імпортінгу можна записати під капотом - наприклад спробуємо імпортнути lecture_2_HW.py
 from types import ModuleType
 
-import_module = 'Lecture 2 HW'
+import_module = 'lecture_2_HW'
 if import_module not in sys.modules:
     sys.modules[import_module] = ModuleType(import_module)  # створюємо інстанс класу  ModuleType
     code = open(import_module + '.py', 'rb').read()  # зчитуємо модуль з файлу як бінарний файл
