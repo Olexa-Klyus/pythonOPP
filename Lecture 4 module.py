@@ -21,7 +21,34 @@ print(math.__doc__)
 print(math.__dict__)
 # який можна змінити
 
-# всі імпортовані модулі є у відповідному словнику
+
+# модуль завантажується в память один раз, при першому імпорті, навіть якщо імпортів декілька,
+# додається ключ в словнику sys.modules, створюється змінна, яка посилається на цей модуль
+# щоб його перезантажити (наприклад зі змінами), є спец функція reload
+
+# процес імпортінгу можна записати під капотом - наприклад спробуємо імпортнути Lecture 2 HW.py
+from types import ModuleType
+
+import_module = 'Lecture 2 HW'
+if import_module not in sys.modules:
+    sys.modules[import_module] = ModuleType(import_module)  # створюємо інстанс класу  ModuleType
+    code = open(import_module + '.py', 'rb').read()         # зчитуємо модуль з файлу як бінарний файл
+    exec(code, sys.modules[import_module].__dict__)         # виконуємо, реєструємо в словнику sys.modules
+
+lec2_HW = sys.modules[import_module]
+
+stud1 = lec2_HW.Student('Ivan5', 'Ivanov5', 445)
+
+group1 = lec2_HW.Group('Python', 5)
+group1.add_student(stud1)
+
+res = group1.search_student('Ivanov1')
+print(group1)
+
+
+print(sys.modules[import_module].__dict__)
+
+# всі модулі, які завантажені в оперативну память,(включаючи імпортовані),  і їхнє розташування на диску є у відповідному словнику
 for item in sys.modules:
     print(item, ' - ', sys.modules[item])
 
