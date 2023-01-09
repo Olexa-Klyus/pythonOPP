@@ -32,24 +32,45 @@ from types import ModuleType
 import_module = 'Lecture 2 HW'
 if import_module not in sys.modules:
     sys.modules[import_module] = ModuleType(import_module)  # створюємо інстанс класу  ModuleType
-    code = open(import_module + '.py', 'rb').read()         # зчитуємо модуль з файлу як бінарний файл
-    exec(code, sys.modules[import_module].__dict__)         # виконуємо, реєструємо в словнику sys.modules
+    code = open(import_module + '.py', 'rb').read()  # зчитуємо модуль з файлу як бінарний файл
+    exec(code, sys.modules[import_module].__dict__)  # виконуємо, реєструємо в словнику sys.modules
 
+# повертаємо посилання на модуль в змінну
 lec2_HW = sys.modules[import_module]
 
+# працюємо з 'Lecture 2 HW' модулем
 stud1 = lec2_HW.Student('Ivan5', 'Ivanov5', 445)
 
 group1 = lec2_HW.Group('Python', 5)
 group1.add_student(stud1)
 
-res = group1.search_student('Ivanov1')
+res1 = group1.search_student('Ivanov1')
 print(group1)
-
+for item in res1:
+    print(item)
 
 print(sys.modules[import_module].__dict__)
 
 # всі модулі, які завантажені в оперативну память,(включаючи імпортовані),  і їхнє розташування на диску є у відповідному словнику
-for item in sys.modules:
-    print(item, ' - ', sys.modules[item])
+# for item in sys.modules:
+#     print(item, ' - ', sys.modules[item])
 
 # при імпортінгу весь модуль виконується !!!, навіть якщо імпортуємо одну функцію
+
+# імпортувати через * доцільно лише коли треба обмежити імпорт якоїсь функції чи змінної
+# обмежуємо через __all__ в модулі, звідки йде імпорт
+
+# до змінної або функції модуля, що імпортнувся можемо звертатися через назву модуля - крапка - назва змінної\функції
+for item in lec2_HW.res:
+    print(item)
+
+# можна робити імпорт всередині функції, тоді імпорт через * робити не можна
+
+# бувають циклічні посилання, тоді імпорт ставлять в кінці, після функцій,
+# або запхнути у фунцію, щоб все працювало
+
+# __name__ завжди буде '__main__'
+
+# конструкція
+# if __name__ == '__main__':
+# буде запускати код тільки з __main__ модуля
